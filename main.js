@@ -17,7 +17,7 @@ score_leftwrist=0;
 
 function setup()
 {
-    canvas=createCanvas(400,500);
+    canvas=createCanvas(600,530);
     canvas.center();
     video=createCapture(VIDEO);
     video.hide();
@@ -59,7 +59,7 @@ if(results.length > 0)
 
 function draw()
 {
-    Image(video, 0 , 0, 500, 550);
+    image(video, 0 , 0, 600, 530);
 
 
 }
