@@ -17,7 +17,7 @@ score_leftwrist=0;
 
 function setup()
 {
-    canvas=createCanvas(600,530);
+    canvas=createCanvas(600,600);
     canvas.center();
     video=createCapture(VIDEO);
     video.hide();
@@ -28,7 +28,7 @@ function setup()
 
 function modelLoaded()
 {
-    consoole.log("poseNet is Initilised");
+    consoole.log("poseNet is Initialized");
 }
 
 function gotPoses(results)
@@ -53,13 +53,49 @@ if(results.length > 0)
     leftwristy=results[0].pose.leftwrist.y;
 
     console.log("left_wristx="+leftwristx + "left_wristy="+ lefttwristy);
-}
-
-}
+}}
 
 function draw()
 {
-    image(video, 0 , 0, 600, 530);
+    image(video, 0 , 0, 600, 600);
+    fill("#fa0707");
+    stroke("#0d0d0d");
+
+    if(score_rightwrist > 0.2)
+    {
+        circle(rightwristx , rightwristy , 20)
+
+        if(rightwristy > 0 && rightwristy <= 100)
+        {
+            document.getElementById("speed").innerHTML="Speed = 0.5x";
+            song.rate(0.5);
+        }
+
+        else if(rightwristy>100 && rightwristy<=200)
+        {
+            document.getElementById("speed").innerHTML="Speed = 1x";
+            song.rate(1);
+        }
+
+        else if(rightwristy > 200 && rightwristy <=300)
+        {
+            document.getElementById("speed").innerHTML="Speed = 1.5x";
+            song.rate(1.5);
+        }
+
+        else if(rightwristy > 300 && rightwristy <= 400)
+        {
+            document.getElementById("speed").innerHTML="Speed = 2x";
+            song.rate(2);
+        }
+
+        else if(rightwristy > 400)
+        {
+            document.getElementById("speed").innerHTML="Speed = 2.5x";
+            song.rate(2.5);
+        }
+    }
 
 
 }
+
